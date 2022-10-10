@@ -1,0 +1,13 @@
+{
+  "name": "imlinfei/watch",
+  "description": "Monitor file changes and automatically restart processes",
+  "type": "project",
+  "require": {
+    "mix/cli": "^3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "": "./"
+    }
+  }
+}
