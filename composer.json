@@ -3,6 +3,7 @@
   "description": "Monitor file changes and automatically restart processes",
   "type": "project",
   "require": {
+    "php": ">=8.0",
     "mix/cli": "^3.0"
   },
   "autoload": {
