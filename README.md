@@ -27,7 +27,7 @@ Developed with Mix PHP framework. (openmix.org/mix-php)
 ```bash
 php watch.php \
   --include="./" \
-  -exclude="/.idea/,/vendor/,/runtime/,*.log" \
+  --exclude="/.idea/,/vendor/,/runtime/,*.log" \
   --cmd="php ./bin/swoole.php"
 ```
 
