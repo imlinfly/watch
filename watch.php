@@ -21,10 +21,15 @@ $cmd = new Mix\Cli\Command([
     'short' => 'Run file hot update',
     'singleton' => true,
     'run' => function () {
+        // Contained paths, multiple paths separated by ","
         $include = Mix\Cli\Flag::match('i', 'include')->string();
+        // Excluded paths, multiple paths separated by ","
         $exclude = Mix\Cli\Flag::match('e', 'exclude')->string();
+        // Monitoring file interval time in seconds
         $interval = Mix\Cli\Flag::match('t', 'interval')->float(2);
+        // Program start command
         $startCmd = Mix\Cli\Flag::match('c', 'cmd')->string();
+        // The signal sent to the child process. The default value is 9
         $signal = Mix\Cli\Flag::match('s', 'signal')->int(9);
 
         if (empty($include)) {
@@ -36,6 +41,7 @@ $cmd = new Mix\Cli\Command([
             die();
         }
 
+        // Splitting parameters into arrays
         $include = Helper::split(',', $include);
         $exclude = Helper::split(',', $exclude);
 
@@ -44,6 +50,7 @@ $cmd = new Mix\Cli\Command([
 
         $driver = new File($include, $exclude, $interval);
         $driver->callback(function () use ($process) {
+            // Detecting the running status of child processes
             $process->isRunning();
         });
         $driver->run(function (string $file) use ($process) {
@@ -73,7 +80,7 @@ $cmd->addOption(
     ]),
     new Mix\Cli\Option([
         'names' => ['s', 'signal'],
-        'usage' => 'The signal sent to the child process. The default value is 9'
+        'usage' => 'The signal sent to the child process. The default value is 9 (SIGKILL)'
     ]),
 );
 

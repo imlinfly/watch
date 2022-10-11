@@ -12,6 +12,13 @@ namespace library;
 
 class Helper
 {
+    /**
+     * Splitting parameters into arrays and removing left and right spaces
+     * @access public
+     * @param string $separator
+     * @param string $string
+     * @return array|string[]
+     */
     public static function split(string $separator, string $string)
     {
         $array = explode($separator, $string);
@@ -20,6 +27,6 @@ class Helper
             return [];
         }
 
-        return array_map(fn(string $value) => trim($value), explode($separator, $string));
+        return array_map(fn(string $value) => trim($value), $array);
     }
 }
